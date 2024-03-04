@@ -1,0 +1,37 @@
+@startuml
+class Buscaminas {
+  - tablero: Tablero
+  - contadorMinas: ContadorMinas
+  + iniciarJuego(filas: Int, columnas: Int, minas: Int)
+  + comprobarVictoria(): Boolean
+  + comprobarDerrota(): Boolean
+}
+
+class Tablero {
+  - celdas: Celda[][]
+  + revelarCelda(x: Int, y: Int)
+  + marcarCelda(x: Int, y: Int)
+  + inicializarTablero(filas: Int, columnas: Int, minas: Int)
+}
+
+class Celda {
+  - esMina: Boolean
+  - estaRevelada: Boolean
+  - estaMarcada: Boolean
+  - minasAdyacentes: Int
+  + revelar()
+  + alternarMarca()
+  + colocarMina()
+  + calcularMinasAdyacentes(): int
+}
+
+class ContadorMinas {
+  - minasRestantes: Int
+  + decrementarContador()
+  + incrementarContador()
+}
+
+Buscaminas  *--  Tablero
+Buscaminas  *--  ContadorMinas
+Tablero *-- Celda
+@enduml
