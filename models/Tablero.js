@@ -17,7 +17,6 @@ class Tablero {
             const fila = [];
             for (let j = 0; j < this.columnas; j++) {
                 fila.push(new Casilla(i, j))
-                console.log("Casilla " + fila[j])
             }
             tablero.push(fila);
         }
@@ -32,7 +31,6 @@ class Tablero {
             do {
                 x = parseInt(Math.random() * this.filas)
                 y = parseInt(Math.random() * this.columnas)
-                console.log("Casilla " + x + "," + y)
             } while (this.tablero[x][y].esBomba == true)
             bombasColocadas++
             this.tablero[x][y].esBomba = true

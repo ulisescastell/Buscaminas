@@ -15,9 +15,23 @@ class Casilla {
         this.y = y
     }
 
-
-    toString() {
-        return `La casilla es: ${this.x},${this.y} con bomba: ${this.esBomba} `
+    marcar() {
+        if (!this.revelada) {
+          this.marcada = !this.marcada;
+        }
+      }
+      
+    revelar() {
+        if (!this.marcada) {
+          this.revelada = true;
+        }
+    }
+      
+    colocarBomba() {
+        this.esBomba = true;
     }
 
+    toString() {
+        return `La casilla es: ${this.x},${this.y} con bomba: ${this.esBomba}`
+    }
 }
