@@ -1,11 +1,9 @@
 
 function init() {
-    let tablero = new Tablero(10, 10, 10);
-    propiedadesTablero()
-    console.log(tablero)
+    let tablero = new Tablero(5, 5, 5)
+    document.oncontextmenu = function() { return false }
     tablero.colocaBombas()
     crearTablero(tablero)
-
 
 }
 
@@ -14,12 +12,10 @@ function añadirDom(id, contenido) {
     let p = document.createElement('p');
     p.textContent = contenido;
     container.appendChild(p);
-
 }
 
 function crearTablero(tablero) {
     let container = document.getElementById('tablero');
-    container.innerHTML = '' //lo vaciamos, así si elegimos jugar de nuevo con otro tamaño no se sobreescribe ni hay posibles conflictos :))
     for (let i = 0; i < tablero.filas; i++) {
         let fila = document.createElement('div') 
         for (let j = 0; j < tablero.columnas; j++) {
@@ -33,33 +29,24 @@ function crearTablero(tablero) {
                     casillaDiv.classList.add('revelada')
                 }
             })
-            casillaDiv.addEventListener('auxclick', function(banderita) {
+            casillaDiv.addEventListener('contextmenu', function(banderita) {
                 casillaDiv.classList.add('flag')
             })
             fila.appendChild(casillaDiv)
+            console.log(fila)
         }
         container.appendChild(fila)
     }
+    document.body.appendChild(container)
 }
 
-
-function propiedadesTablero() {
-    let tablero
-    let btn10 = document.querySelector('#btn10')
-    let btn20 = document.querySelector('#btn20')
-    let btn30 = document.querySelector('#btn30')
-
-    btn10.addEventListener('click', function() {
-        tablero = new Tablero(10, 10, 10)  
-    })
-
-    btn20.addEventListener('click', function() {
-        new Tablero(20, 20, 20)
-    })
-
-    btn30.addEventListener('click', function() {
-        new Tablero(0, 30, 30)
-    }) 
+function crearTableroMedida(numero,bombas = 10) {
+    container = document.getElementById("tablero");
+    container.innerHTML = ''
+    bombas = numero + numero * 0.3
+    let tablero = new Tablero(numero, numero, bombas);
+    tablero.colocaBombas()
+    crearTablero(tablero)
 }
 
 

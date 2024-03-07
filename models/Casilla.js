@@ -31,6 +31,10 @@ class Casilla {
         this.esBomba = true;
     }
 
+    adyacentes() {
+        console.log(this.x, this.y)
+    } 
+
     toString() {
         return `La casilla es: ${this.x},${this.y} con bomba: ${this.esBomba}`
     }
