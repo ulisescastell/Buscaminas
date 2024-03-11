@@ -34,10 +34,40 @@ class Tablero {
             } while (this.tablero[x][y].esBomba == true)
             bombasColocadas++
             this.tablero[x][y].esBomba = true
-
-
         }
     }
+
+    calcularAdyacentes() {
+        for (let x = 0; x < this.columnas; x++) {
+            for (let y = 0; y < this.filas; y++) {
+                let casilla = this.tablero[x][y]
+                if (casilla.esBomba) {
+                    this.obtenerAdyacentes(casilla)
+                    casilla.adyacentes += 1 //sumar alrededor     
+                }
+                else {
+                    //console.log("no calcular")
+                }
+
+            }
+        }
+    }
+
+    obtenerAdyacentes(casillaOrigen) {
+        const columa = casillaOrigen.y
+        const fila = casillaOrigen.x
+          
+        let casillasAlrededor = []
+        for (let x = fila-1; x < fila+1; x++) {
+            for (let y = columa-1; y < columa+1; y++) {
+                let casilla = this.tablero[x][y]
+                casillasAlrededor.push(casilla)
+            }
+        }
+        console.log(casillasAlrededor)
+    }
+
+
 
 
 

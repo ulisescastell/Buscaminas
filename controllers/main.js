@@ -1,10 +1,10 @@
 
 function init() {
     let tablero = new Tablero(5, 5, 5)
-    document.oncontextmenu = function() { return false }
+    document.oncontextmenu = function () { return false }
     tablero.colocaBombas()
+    tablero.calcularAdyacentes()
     crearTablero(tablero)
-
 }
 
 function añadirDom(id, contenido) {
@@ -17,35 +17,65 @@ function añadirDom(id, contenido) {
 function crearTablero(tablero) {
     let container = document.getElementById('tablero');
     for (let i = 0; i < tablero.filas; i++) {
-        let fila = document.createElement('div') 
+        let fila = document.createElement('div')
         for (let j = 0; j < tablero.columnas; j++) {
             let casillaDiv = document.createElement('div')
             casillaDiv.classList.add('casilla')
-            casillaDiv.addEventListener('click', function(revelar) {
+            casillaDiv.addEventListener('click', function (revelar) {
                 tablero.tablero[i][j].revelar();
                 if (tablero.tablero[i][j].esBomba) {
                     casillaDiv.classList.add('mina');
-                } else {
-                    casillaDiv.classList.add('revelada')
+                }
+                else {
+                    switch (tablero.tablero[i][j].adyacentes) {
+                        case 1:
+                            casillaDiv.classList.add('uno')
+                            break;
+                        case 2:
+                            casillaDiv.classList.add('dos')
+                            break;
+                        case 3:
+                            casillaDiv.classList.add('tres')
+                            break;
+                        case 4:
+                            casillaDiv.classList.add('cuatro')
+                            break;
+                        case 5:
+                            casillaDiv.classList.add('cinco')
+                            break;
+                        default:
+                            casillaDiv.classList.add('revelada')
+                            break;
+                    }
                 }
             })
-            casillaDiv.addEventListener('contextmenu', function(banderita) {
+            casillaDiv.addEventListener('contextmenu', function (banderita) {
                 casillaDiv.classList.add('flag')
             })
             fila.appendChild(casillaDiv)
-            console.log(fila)
         }
         container.appendChild(fila)
     }
     document.body.appendChild(container)
 }
 
-function crearTableroMedida(numero,bombas = 10) {
+function perder(tablero) {
+    for (let i = 0; i < tablero.filas; i++) {
+        for (let j = 0; j < tablero.columnas; j++) {
+            if (tablero.tablero[i][j].esBomba) {
+                alert("Has perdido!")
+            }
+        }
+    }
+}
+
+function crearTableroMedida(numero, bombas = 10) {
     container = document.getElementById("tablero");
     container.innerHTML = ''
     bombas = numero + numero * 0.3
     let tablero = new Tablero(numero, numero, bombas);
     tablero.colocaBombas()
+    tablero.calcularAdyacentes()
     crearTablero(tablero)
 }
 

@@ -62,6 +62,26 @@ h2 {
   background: url('./img/banderita.png') center/contain no-repeat;
 }
 
+.casilla.uno {
+  background: url('./img/uno.png') center/contain no-repeat;
+}
+
+.casilla.dos {
+  background: url('./img/dos.png') center/contain no-repeat;
+}
+
+.casilla.tres {
+  background: url('./img/tres.png') center/contain no-repeat;
+}
+
+.casilla.cuatro {
+  background: url('./img/cuatro.png') center/contain no-repeat;
+}
+
+.casilla.cinco {
+  background: url('./img/cinco.png') center/contain no-repeat;
+}
+
 .tablero {
   border: 3px solid #7b7b7b;
   background-color: #a09b9b; 
