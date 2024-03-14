@@ -27,6 +27,7 @@ function crearTablero(tablero) {
                     casillaDiv.classList.add('mina');
                 }
                 else {
+                    console.log(tablero.tablero[i][j])
                     switch (tablero.tablero[i][j].adyacentes) {
                         case 1:
                             casillaDiv.classList.add('uno')

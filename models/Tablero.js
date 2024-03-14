@@ -42,11 +42,16 @@ class Tablero {
             for (let y = 0; y < this.filas; y++) {
                 let casilla = this.tablero[x][y]
                 if (casilla.esBomba) {
-                    this.obtenerAdyacentes(casilla)
-                    casilla.adyacentes += 1 //sumar alrededor     
+                    console.log(casilla)         
+                    let casillasAdyacentes = this.obtenerAdyacentes(casilla);
+
+                    casillasAdyacentes.forEach(casilla => casilla.adyacentes++)
+                   
+                    
+                    //casilla.adyacentes += 1 //sumar alrededor   
                 }
                 else {
-                    //console.log("no calcular")
+
                 }
 
             }
@@ -54,17 +59,42 @@ class Tablero {
     }
 
     obtenerAdyacentes(casillaOrigen) {
-        const columa = casillaOrigen.y
-        const fila = casillaOrigen.x
-          
+        const y = casillaOrigen.y
+        const x = casillaOrigen.x
+
+        console.log("ORIGEN X", x)
+        console.log("ORIGEN Y", y)
+
         let casillasAlrededor = []
-        for (let x = fila-1; x < fila+1; x++) {
-            for (let y = columa-1; y < columa+1; y++) {
-                let casilla = this.tablero[x][y]
-                casillasAlrededor.push(casilla)
+
+        if (y > 0) {
+            if (x > 0) {
+                casillasAlrededor.push(this.tablero[x - 1][y - 1])
+            }
+            casillasAlrededor.push(this.tablero[x][y - 1])
+            if (x < this.columnas - 1) {
+                casillasAlrededor.push(this.tablero[x + 1][y - 1])
             }
         }
-        console.log(casillasAlrededor)
+        if (x > 0) {
+            casillasAlrededor.push(this.tablero[x - 1][y])
+            if (x < this.columnas - 1) {
+                casillasAlrededor.push(this.tablero[x + 1][y])
+            }
+        }
+        if (y < this.filas - 1) {
+            if (x > 0) {
+                casillasAlrededor.push(this.tablero[x - 1][y + 1])
+            }
+            casillasAlrededor.push(this.tablero[x][y + 1])
+            if (x < this.columnas - 1) {
+                casillasAlrededor.push(this.tablero[x + 1][y + 1])
+            }
+        }
+
+
+
+        return casillasAlrededor
     }
 
 
