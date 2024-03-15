@@ -42,18 +42,10 @@ class Tablero {
             for (let y = 0; y < this.filas; y++) {
                 let casilla = this.tablero[x][y]
                 if (casilla.esBomba) {
-                    console.log(casilla)         
+                    console.log(casilla)
                     let casillasAdyacentes = this.obtenerAdyacentes(casilla);
-
                     casillasAdyacentes.forEach(casilla => casilla.adyacentes++)
-                   
-                    
-                    //casilla.adyacentes += 1 //sumar alrededor   
                 }
-                else {
-
-                }
-
             }
         }
     }
@@ -61,9 +53,6 @@ class Tablero {
     obtenerAdyacentes(casillaOrigen) {
         const y = casillaOrigen.y
         const x = casillaOrigen.x
-
-        console.log("ORIGEN X", x)
-        console.log("ORIGEN Y", y)
 
         let casillasAlrededor = []
 
@@ -78,11 +67,11 @@ class Tablero {
         }
         if (x > 0) {
             casillasAlrededor.push(this.tablero[x - 1][y])
-            if (x < this.columnas - 1) {
+            if (x < this.filas - 1) {
                 casillasAlrededor.push(this.tablero[x + 1][y])
             }
         }
-        if (y < this.filas - 1) {
+        if (y < this.columnas - 1) {
             if (x > 0) {
                 casillasAlrededor.push(this.tablero[x - 1][y + 1])
             }
@@ -91,14 +80,30 @@ class Tablero {
                 casillasAlrededor.push(this.tablero[x + 1][y + 1])
             }
         }
-
-
-
         return casillasAlrededor
     }
 
-
-
+    abrirTablero(x, y) {
+        x = parseInt(x);
+        y = parseInt(y);
+        
+        if (this.tablero[x][y].esBomba) {
+            this.tablero[x][y].revelar()
+            return -1;
+        }
+        if (this.tablero[x][y].adyacentes != 0) {
+            this.tablero[x][y].revelar();
+            return;
+        } else {
+            this.tablero[x][y].revelar();
+            let vecinos = this.obtenerAdyacentes(this.tablero[x][y]);
+            vecinos.forEach(vecino => {
+                if (!vecino.revelada) {
+                    this.abrirTablero(vecino.x, vecino.y);
+                }
+            });
+        }
+    }
 
 
 

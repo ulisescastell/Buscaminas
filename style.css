@@ -58,6 +58,11 @@ h2 {
   background: url('./img/bombaRoja.png') center/contain no-repeat;
 }
 
+.casilla.minaNormal {
+  background: url('./img/bombaNormal.png') center/contain no-repeat;
+}
+
+
 .casilla.flag {
   background: url('./img/banderita.png') center/contain no-repeat;
 }
