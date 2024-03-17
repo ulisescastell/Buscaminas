@@ -9,17 +9,13 @@
     <script src="./models/Tablero.js"></script>
     <script src="./models/Casilla.js"></script>
     <script src="./controllers/main.js"></script>
+    <script src="./controllers/userSettings.js"></script>
 
 </head>
 
 <body onload="init()">
-    <div class="contenido" id="estado">
-    <h1>Buscaminas</h1>
-    <h2>made by Uli</h2>
-    <button id="btn10" onclick="crearTableroMedida(5)">5x5</button>
-    <button id="btn20" onclick="crearTableroMedida(10)">10x10</button>
-    <button id="btn30" onclick="crearTableroMedida(15)">15x15</button>
-    </div>
+    <div class="contenido" id="contenido">
+    <div id="nombre-jugador" class="info"></div>
     <div id="tablero" class="tablero"></div>
     </div>
 </body>

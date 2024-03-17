@@ -29,6 +29,7 @@ class Tablero {
         let y = 0;
         while (bombasColocadas < this.numBombas) {
             do {
+                console.log(bombasColocadas)
                 x = parseInt(Math.random() * this.filas)
                 y = parseInt(Math.random() * this.columnas)
             } while (this.tablero[x][y].esBomba == true)
@@ -86,23 +87,39 @@ class Tablero {
     abrirTablero(x, y) {
         x = parseInt(x);
         y = parseInt(y);
-        
-        if (this.tablero[x][y].esBomba) {
-            this.tablero[x][y].revelar()
-            return -1;
-        }
-        if (this.tablero[x][y].adyacentes != 0) {
-            this.tablero[x][y].revelar();
+    
+        if (this.tablero[x][y].revelada) {
             return;
-        } else {
+        }
+    
+        if (this.tablero[x][y].esBomba) {
             this.tablero[x][y].revelar();
+            return -1; 
+        }
+    
+        this.tablero[x][y].revelar();
+    
+
+        if (this.tablero[x][y].adyacentes === 0) {
             let vecinos = this.obtenerAdyacentes(this.tablero[x][y]);
             vecinos.forEach(vecino => {
-                if (!vecino.revelada) {
+                if (!vecino.revelada && !vecino.esBomba) {
                     this.abrirTablero(vecino.x, vecino.y);
                 }
             });
         }
+    }
+
+    obtenerPosicionesDeBombas() {
+        let posicionesDeBombas = [];
+        for (let i = 0; i < this.filas; i++) {
+            for (let j = 0; j < this.columnas; j++) {
+                if (this.tablero[i][j].esBomba) {
+                    posicionesDeBombas.push({ x: i, y: j }); //ayuda del chat
+                }
+            }
+        }
+        return posicionesDeBombas;
     }
 
 
