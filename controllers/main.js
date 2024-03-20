@@ -83,27 +83,6 @@ function revelarCasilla(x, y, casillaDiv) {
     }
 }
 
-
-function comprobacion(casilla) {
-    if(tablero.tablero[i][j].marcadaConBandera) {
-        casillaDiv.classList.add('flag');
-    }
-    if(tablero.tablero[i][j].revelada) {
-        casillaDiv.classList.add('revelada'); 
-        if (tablero.tablero[i][j].esBomba) {
-            casillaDiv.classList.add('mina');
-            perder()
-
-        } else {
-            let adyacentes = tablero.tablero[i][j].adyacentes;
-            if (adyacentes > 0) {
-                casillaDiv.classList.add(['uno', 'dos', 'tres', 'cuatro', 'cinco'][adyacentes-1]); 
-            }
-        }
-    }
-    fila.appendChild(casillaDiv);
-}
-
 function clickCasilla() {
     tablero.abrirTablero(this.getAttribute("coordx"), this.getAttribute("coordy"))
     crearTablero();
@@ -123,22 +102,13 @@ function banderita () {
     });
 }
 
-function crearTableroMedida(filas, columnas, bombas) {
-    container = document.getElementById("tablero");
-    container.innerHTML = ''
-    let tableroCrear = document.getElementById("tablero")
-    tableroCrear.style.pointerEvents = "auto";
-    let tablero = new Tablero(filas, columnas, bombas);
-    tablero.colocaBombas()
-    tablero.calcularAdyacentes()
-    crearTablero(tablero)
-}
-
 function perder() {
     let posicionesDeBombas = tablero.obtenerPosicionesDeBombas();
+    console.log("Posiciones bombas" + posicionesDeBombas)
     posicionesDeBombas.forEach(pos => {
         let casilla = document.querySelector(`div[coordx="${pos.x}"][coordy="${pos.y}"]`);
-        if (casilla && !casilla.classList.contains('mina')) {
+        console.log(casilla)
+        if (casilla && !casilla.classList.contains('mina') && !casilla.esBomba) {
             casilla.classList.add('minaNormal');
         }
     });

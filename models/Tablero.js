@@ -32,7 +32,7 @@ class Tablero {
                 console.log(bombasColocadas)
                 x = parseInt(Math.random() * this.filas)
                 y = parseInt(Math.random() * this.columnas)
-            } while (this.tablero[x][y].esBomba == true)
+            } while (this.tablero[x][y].esBomba === true)
             bombasColocadas++
             this.tablero[x][y].esBomba = true
         }
@@ -119,6 +119,7 @@ class Tablero {
                 }
             }
         }
+
         return posicionesDeBombas;
     }
 
