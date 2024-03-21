@@ -21,7 +21,7 @@ function init() {
 function mostrarNombreJugador(nombre) {
     const nombreJugadorElemento = document.getElementById('nombre-jugador');
     if (nombreJugadorElemento) {
-        nombreJugadorElemento.textContent = `Bienvenido/a, ${nombre}`;
+        nombreJugadorElemento.textContent = `Bienvenido/a, ${nombre}!`;
     }
 }
 
@@ -37,7 +37,7 @@ function crearCasilla(x, y) {
         marcarCasilla(x, y, casillaDiv);
     });
 
-    if(tablero.tablero[x][y].marcadaConBandera) {
+    if(tablero.tablero[x][y].marcada) {
         casillaDiv.classList.add('flag');
     }
     
@@ -67,8 +67,8 @@ function crearTablero() {
 }
 
 function marcarCasilla(x, y, casillaDiv) {
-    tablero.tablero[x][y].marcadaConBandera = !tablero.tablero[x][y].marcadaConBandera;
-    if(tablero.tablero[x][y].marcadaConBandera) {
+    tablero.tablero[x][y].marcada = !tablero.tablero[x][y].marcada;
+    if(tablero.tablero[x][y].marcada) {
         casillaDiv.classList.add('flag');
     } else {
         casillaDiv.classList.remove('flag');
@@ -92,24 +92,26 @@ function revelarCasilla(x, y, casillaDiv) {
 function ganar() {
     for (let i = 0; i < tablero.filas; i++) {
         for (let j = 0; j < tablero.columnas; j++) {
-            let numCasillas = obtenerNumCasillas()
-            console.log(this.bombas)
-        } console.log(obtenerNumCasillas())
+            if (!tablero.tablero[i][j].revelada && !tablero.tablero[i][j].esBomba) {
+                return
+            }
+            if (!tablero.tablero[i][j].revelada && tablero.tablero[i][j].marcada && !tablero.tablero[i][j].esBomba) {
+                return
+            }
+        }
     }
+    console.log("has ganado")
+    let tableroElemento = document.getElementById("tablero");
+    tableroElemento.style.pointerEvents = "none";
+    crearBoton("Yupiii! Has ganado!!!")
+    confetti()
+    confetti()
+    confetti()
+    confetti()
 }
 
-// function obtenerNumCasillas () {
-//     let contador = 0
-//     for (let i = 0; i < tablero.filas; i++) {
-//         for (let j = 0; j < tablero.columnas; j++) {
-//             contador++
-//         }
-//     }
-//     return contador
-// }
-
-
 function clickCasilla() {
+
     tablero.abrirTablero(this.getAttribute("coordx"), this.getAttribute("coordy"))
     crearTablero();
 }
@@ -119,8 +121,8 @@ function banderita () {
         e.preventDefault();
         let x = this.getAttribute("coordx");
         let y = this.getAttribute("coordy");
-        tablero.tablero[x][y].marcadaConBandera = !tablero.tablero[x][y].marcadaConBandera;
-        if(tablero.tablero[x][y].marcadaConBandera) {
+        tablero.tablero[x][y].marcada = !tablero.tablero[x][y].marcada;
+        if(tablero.tablero[x][y].marcada) {
             this.classList.add('flag');
         } else {
             this.classList.remove('flag');
@@ -140,7 +142,22 @@ function perder() {
     });
     let tableroElemento = document.getElementById("tablero");
     tableroElemento.style.pointerEvents = "none";
+    crearBoton("Has perdido. La próxima será!")
 }
+
+function crearBoton(mensaje) {
+    let content = document.getElementById("contenido")
+    let btn = document.createElement("button")
+    let p = document.createElement("p")
+    btn.addEventListener('click', function(){
+        location.reload()
+    })
+    btn.textContent = "Reiniciar"
+    p.textContent = mensaje
+    content.appendChild(p)
+    content.appendChild(btn)
+}
+
 
 
 

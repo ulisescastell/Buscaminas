@@ -70,9 +70,9 @@ class Tablero {
         }
         if (x > 0) {
             casillasAlrededor.push(this.tablero[x - 1][y])
-            if (x < this.filas - 1) {
-                casillasAlrededor.push(this.tablero[x + 1][y])
-            }
+        }
+        if (x < this.filas - 1) {
+            casillasAlrededor.push(this.tablero[x + 1][y])
         }
         if (y < this.columnas - 1) {
             if (x > 0) {
@@ -91,6 +91,10 @@ class Tablero {
         y = parseInt(y);
     
         if (this.tablero[x][y].revelada) {
+            return;
+        }
+
+        if (this.tablero[x][y].marcada) {
             return;
         }
     
@@ -117,7 +121,7 @@ class Tablero {
         for (let i = 0; i < this.filas; i++) {
             for (let j = 0; j < this.columnas; j++) {
                 if (this.tablero[i][j].esBomba) {
-                    posicionesDeBombas.push({ x: i, y: j }); //ayuda del chat
+                    posicionesDeBombas.push({ x: i, y: j }); 
                 }
             }
         }
