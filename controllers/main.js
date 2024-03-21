@@ -40,6 +40,7 @@ function crearCasilla(x, y) {
     if(tablero.tablero[x][y].marcadaConBandera) {
         casillaDiv.classList.add('flag');
     }
+    
 
     if(tablero.tablero[x][y].revelada) {
         revelarCasilla(x, y, casillaDiv);
@@ -62,6 +63,7 @@ function crearTablero() {
     if (tablero.estado == true) {
         perder()
     }
+    ganar()
 }
 
 function marcarCasilla(x, y, casillaDiv) {
@@ -76,6 +78,7 @@ function marcarCasilla(x, y, casillaDiv) {
 function revelarCasilla(x, y, casillaDiv) {
     casillaDiv.classList.add('revelada'); 
     if (tablero.tablero[x][y].esBomba) {
+        casillaDiv.classList.remove('flag')
         casillaDiv.classList.add('mina');
         tablero.estado = true
     } else {
@@ -85,6 +88,25 @@ function revelarCasilla(x, y, casillaDiv) {
         }
     }
 }
+
+function ganar() {
+    for (let i = 0; i < tablero.filas; i++) {
+        for (let j = 0; j < tablero.columnas; j++) {
+            let numCasillas = obtenerNumCasillas()
+            console.log(this.bombas)
+        } console.log(obtenerNumCasillas())
+    }
+}
+
+// function obtenerNumCasillas () {
+//     let contador = 0
+//     for (let i = 0; i < tablero.filas; i++) {
+//         for (let j = 0; j < tablero.columnas; j++) {
+//             contador++
+//         }
+//     }
+//     return contador
+// }
 
 
 function clickCasilla() {
