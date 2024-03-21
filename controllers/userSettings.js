@@ -10,7 +10,7 @@ function manejarEnvioFormulario(event) {
     event.preventDefault();
     if(validarFormulario(this)) {
         guardarConfiguracion(this);
-        window.location.href = 'index.html';
+        window.location.href = 'juego.html';
     }
 }
 
