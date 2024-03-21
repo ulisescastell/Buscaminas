@@ -59,6 +59,9 @@ function crearTablero() {
         }
         container.appendChild(fila);
     }
+    if (tablero.estado == true) {
+        perder()
+    }
 }
 
 function marcarCasilla(x, y, casillaDiv) {
@@ -74,7 +77,7 @@ function revelarCasilla(x, y, casillaDiv) {
     casillaDiv.classList.add('revelada'); 
     if (tablero.tablero[x][y].esBomba) {
         casillaDiv.classList.add('mina');
-        perder();
+        tablero.estado = true
     } else {
         let adyacentes = tablero.tablero[x][y].adyacentes;
         if (adyacentes > 0) {
@@ -82,6 +85,7 @@ function revelarCasilla(x, y, casillaDiv) {
         }
     }
 }
+
 
 function clickCasilla() {
     tablero.abrirTablero(this.getAttribute("coordx"), this.getAttribute("coordy"))

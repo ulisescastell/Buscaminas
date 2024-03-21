@@ -3,8 +3,10 @@ class Tablero {
     columnas;
     numBombas;
     tablero;
+    estado;
 
-    constructor(filas, columnas, numBombas) {
+    constructor(filas, columnas, numBombas, estado) {
+        this.estado = estado
         this.filas = filas
         this.columnas = columnas
         this.numBombas = numBombas
