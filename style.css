@@ -109,6 +109,18 @@ p {
   background: url('./img/cinco.png') center/contain no-repeat;
 }
 
+.casilla.seis {
+  background: url('./img/seis.png') center/contain no-repeat;
+}
+
+.casilla.siete {
+  background: url('./img/siete.png') center/contain no-repeat;
+}
+
+.casilla.ocho {
+  background: url('./img/ocho.png') center/contain no-repeat;
+}
+
 .tablero {
   border: 3px solid #7b7b7b;
   background-color: #a09b9b; 
