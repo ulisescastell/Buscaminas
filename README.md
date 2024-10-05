@@ -2,7 +2,8 @@
 
 Welcome to **Minesweeper**, a classic game built using HTML, CSS, and JavaScript. Play it directly in your browser!
 
-![Game Screenshot](path_to_your_image.png) <!-- You can add a game screenshot here -->
+![Game Screenshot](![image](https://github.com/user-attachments/assets/c9572785-688a-4660-96de-cd6aee85ceb7)
+) <!-- You can add a game screenshot here -->
 
 ## 🌟 Features
 
