@@ -52,5 +52,17 @@ Check out the game live at:
 - **Backend**: N/A (Frontend-only app)
 - **Deployment**: Vercel
 
+  ## 🤝 Contributing
+
+Contributions are welcome! Please open a **pull request** or create an **issue** with your suggestions or improvements.
+
+---
+
+## 🧑‍💻 Author
+
+**Ulises Castell**  
+You can check out more of my projects on [my GitHub](https://github.com/ulisescastell).
+
+
 
 
