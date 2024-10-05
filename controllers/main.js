@@ -103,7 +103,7 @@ function ganar() {
     console.log("has ganado")
     let tableroElemento = document.getElementById("tablero");
     tableroElemento.style.pointerEvents = "none";
-    crearBoton("Yupiii! Has ganado!!!")
+    crearBoton("Enhorabuena, ganaste!!!")
     confetti()
     confetti()
     confetti()
