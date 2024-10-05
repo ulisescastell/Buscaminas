@@ -17,7 +17,7 @@ Welcome to **Minesweeper**, a classic game built using HTML, CSS, and JavaScript
 
 Check out the game live at:
 
-[Vercel Deployment](https://your-project.vercel.app)
+[Vercel Deployment](https://buscaminas-roan.vercel.app)
 
 ---
 
