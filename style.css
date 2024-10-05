@@ -130,11 +130,12 @@ p {
   margin-top: 10px;
   border-radius: 1rem;
   height: auto; 
+  box-shadow: 0 20px 10px rgba(0,0,0,0.2);
 }
 
 .info {
   color: white;
-  font-size: 28px;
+  font-size: 20px;
   font-family: 'Press Start 2P', cursive;
   padding: 1rem;
   height: 50px; 
