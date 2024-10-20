@@ -1,3 +1,8 @@
+html {
+  background-image: linear-gradient(to right, #495057 0%, rgb(19, 18, 18) 100%);
+}
+
+
 html, body {
   height: 100%;
   margin: 0;
@@ -5,7 +10,7 @@ html, body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #343a40;
+  
 }
 
 .container {
@@ -26,7 +31,7 @@ html, body {
 button {
   padding: 8px 20px;
   font-size: 1rem;
-  background: linear-gradient(145deg, #007bff, #0056b3);
+  background: linear-gradient(145deg, #495057, #000000);
   color: #ffffff;
   border: none;
   border-radius: 4px;
@@ -36,7 +41,7 @@ button {
 }
 
 button:hover {
-  background: linear-gradient(145deg, #0056b3, #004088); 
+  background: linear-gradient(145deg, black 100%,  #434343); 
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5); 
   transform: scale(1.05); 
   transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s; 
