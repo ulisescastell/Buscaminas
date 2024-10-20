@@ -93,24 +93,33 @@ function ganar() {
     for (let i = 0; i < tablero.filas; i++) {
         for (let j = 0; j < tablero.columnas; j++) {
             if (!tablero.tablero[i][j].revelada && !tablero.tablero[i][j].esBomba) {
-                return
+                return;
             }
             if (!tablero.tablero[i][j].revelada && tablero.tablero[i][j].marcada && !tablero.tablero[i][j].esBomba) {
-                return
+                return;
             }
         }
     }
+
+    let posicionesDeBombas = tablero.obtenerPosicionesDeBombas();
+    posicionesDeBombas.forEach(pos => {
+        let casilla = document.querySelector(`div[coordx="${pos.x}"][coordy="${pos.y}"]`);
+        if (casilla && !casilla.classList.contains('mina')) {
+            casilla.classList.add('minaNormal'); 
+        }
+    });
+
     let tableroElemento = document.getElementById("tablero");
     tableroElemento.style.pointerEvents = "none";
-    crearBoton("GG, you won!!!")
-    confetti()
-    confetti()
-    confetti()
-    confetti()
+    crearBoton("GG, you won!!!");
+    confetti();
+    confetti();
+    confetti();
+    confetti();
 }
 
-function clickCasilla() {
 
+function clickCasilla() {
     tablero.abrirTablero(this.getAttribute("coordx"), this.getAttribute("coordy"))
     crearTablero();
 }
@@ -133,15 +142,33 @@ function perder() {
     let posicionesDeBombas = tablero.obtenerPosicionesDeBombas();
     posicionesDeBombas.forEach(pos => {
         let casilla = document.querySelector(`div[coordx="${pos.x}"][coordy="${pos.y}"]`);
-        console.log(casilla)
-        if (casilla && !casilla.classList.contains('mina') && !casilla.esBomba) {
-            casilla.classList.add('minaNormal');
+        if (casilla) {
+            casilla.classList.add('revelada');
+            casilla.classList.remove('flag');
+            if (tablero.tablero[pos.x][pos.y].revelada) {
+                casilla.classList.add('mina'); 
+            } else {
+                casilla.classList.add('minaNormal'); 
+            }
         }
     });
+
+    for (let i = 0; i < tablero.filas; i++) {
+        for (let j = 0; j < tablero.columnas; j++) {
+            let casillaDiv = document.querySelector(`div[coordx="${i}"][coordy="${j}"]`);
+            if (casillaDiv && tablero.tablero[i][j].marcada && !tablero.tablero[i][j].esBomba) {
+                casillaDiv.classList.add('revelada');
+                casillaDiv.classList.remove('flag');
+            }
+        }
+    }
+
     let tableroElemento = document.getElementById("tablero");
     tableroElemento.style.pointerEvents = "none";
-    crearBoton("You missed out some bombs... Next time!")
+    crearBoton("You missed out some bombs... Next time!");
 }
+
+
 
 function crearBoton(mensaje) {
     let content = document.getElementById("contenido")
