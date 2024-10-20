@@ -21,7 +21,7 @@ function init() {
 function mostrarNombreJugador(nombre) {
     const nombreJugadorElemento = document.getElementById('nombre-jugador');
     if (nombreJugadorElemento) {
-        nombreJugadorElemento.textContent = `Bienvenido/a, ${nombre}!`;
+        nombreJugadorElemento.textContent = `Let's play, ${nombre}!`;
     }
 }
 
@@ -100,10 +100,9 @@ function ganar() {
             }
         }
     }
-    console.log("has ganado")
     let tableroElemento = document.getElementById("tablero");
     tableroElemento.style.pointerEvents = "none";
-    crearBoton("Enhorabuena, ganaste!!!")
+    crearBoton("GG, you won!!!")
     confetti()
     confetti()
     confetti()
@@ -132,7 +131,6 @@ function banderita () {
 
 function perder() {
     let posicionesDeBombas = tablero.obtenerPosicionesDeBombas();
-    console.log("Posiciones bombas" + posicionesDeBombas)
     posicionesDeBombas.forEach(pos => {
         let casilla = document.querySelector(`div[coordx="${pos.x}"][coordy="${pos.y}"]`);
         console.log(casilla)
@@ -142,20 +140,23 @@ function perder() {
     });
     let tableroElemento = document.getElementById("tablero");
     tableroElemento.style.pointerEvents = "none";
-    crearBoton("Has perdido. La próxima será!")
+    crearBoton("You missed out some bombs... Next time!")
 }
 
 function crearBoton(mensaje) {
     let content = document.getElementById("contenido")
+    let container = document.createElement("div")
+    container.className = 'container'
     let btn = document.createElement("button")
     let p = document.createElement("p")
     btn.addEventListener('click', function(){
         location.reload()
     })
-    btn.textContent = "Reiniciar"
+    btn.textContent = "Play again"
     p.textContent = mensaje
-    content.appendChild(p)
-    content.appendChild(btn)
+    content.appendChild(container)
+    container.appendChild(p)
+    container.appendChild(btn)
 }
 
 
